@@ -1,1 +1,94 @@
-<p>home works!</p>
+<div class="homepage">
+  <!-- recherche sous le navbar -->
+  <div class="search-bar">
+    <input type="text" placeholder="Rechercher..." [(ngModel)]="searchQuery" />
+    <button class="btn-search" (click)="onSearch()">
+      <fa-icon [icon]="'search'"></fa-icon>
+    </button>
+  </div>
+
+  <!-- Bouton flottant chatbot -->
+  <div class="chatbot-widget" [class.shrink]="isShrunk">
+    <div class="chatbot-message">Prêt à découvrir ton avenir ?</div>
+    <button class="chatbot-icon" (click)="goToChatbotPage()">
+      <fa-icon [icon]="'robot'"></fa-icon>
+    </button>
+  </div>
+
+  <!-- hero / accroche -->
+  <section class="hero">
+    <h2>Découvre ton avenir avec Next Step Senegal</h2>
+    <p class="lead">
+      Next Step t’aide à construire ton avenir avec des choix éclairés.
+      <strong>Orientation, métiers, écoles…</strong> tout est là pour toi.
+    </p>
+
+    <div class="hero-actions">
+      <button class="action primary" (click)="startOrientation()">
+        <fa-icon [icon]="'book-open'"></fa-icon>
+        Commencer mon orientation
+      </button>
+
+      <button class="action" (click)="doTest()">
+        <fa-icon [icon]="'vial'"></fa-icon>
+        Faire le test
+      </button>
+
+      <button class="action" (click)="discover()">
+        <fa-icon [icon]="'search'"></fa-icon>
+        Découvrir les filières
+      </button>
+    </div>
+  </section>
+
+  <!-- two-column info: test d'orientation + parcours -->
+  <section class="info-row">
+    <div class="card orientation-card">
+      <h4><fa-icon [icon]="'graduation-cap'"></fa-icon> Test d'orientation</h4>
+      <p>Un test basé sur tes intérêts, compétences et résultats pour recommander des parcours adaptés.</p>
+      <p class="muted">Analyse personnalisée et recommandations basées sur ton profil unique.</p>
+      <button class="link-btn" (click)="doTest()">Faire le test maintenant</button>
+    </div>
+
+    <div class="card parcours-card">
+      <h4>Parcours & Métiers</h4>
+      <div class="parcours-graph">
+        <div class="node">Technique</div>
+        <div class="node">Santé</div>
+        <div class="node">Business</div>
+        <div class="node">Droit</div>
+        <div class="node">Finance</div>
+        <div class="node">Commerce</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- métiers list -->
+  <section class="jobs-section">
+    <h3>Découvre des métiers</h3>
+
+    <div class="job-cards">
+      <!-- ✅ Affichage si aucun résultat -->
+      <div *ngIf="filteredJobs().length === 0" class="no-jobs">Aucun métier disponible pour le moment.</div>
+
+      <!-- ✅ Liste des métiers -->
+      <div class="job-card" *ngFor="let job of filteredJobs()">
+        <div class="job-left">
+          <div class="job-icon">
+            <fa-icon [icon]="job.icon"></fa-icon>
+          </div>
+          <div class="job-info">
+            <div class="job-title">{{ job.title }}</div>
+            <div class="job-sub">Voir détails</div>
+          </div>
+        </div>
+
+        <div class="job-right">
+          <div class="job-duration">{{ job.duration }}</div>
+          <button class="details" (click)="viewDetails(job)">Voir détails</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+

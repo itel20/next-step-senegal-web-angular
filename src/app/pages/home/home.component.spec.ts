@@ -1,21 +1,50 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+jest.mock('app/core/auth/account.service');
+jest.mock('app/login/login.service');
 
-import { HomeComponent } from './home.component';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { of } from 'rxjs';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
+
+
+import HomeComponent from './home.component';
+
+describe('Home Component', () => {
+  let comp: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [HomeComponent],
+    
+    })
+      .overrideTemplate(HomeComponent, '')
+      .compileComponents();
+  }));
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [HomeComponent]
-    });
     fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    comp = fixture.componentInstance;
+   
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('ngOnInit', () => {
+    it('Should synchronize account variable with current account', () => {
+      
+      
+      comp.ngOnInit();
+
+
+     
+    });
+  });
+
+  describe('login', () => {
+    it('Should call loginService.login on login', () => {
+      // WHEN
+      comp.login();
+
+      // THEN
+      
+    });
   });
 });

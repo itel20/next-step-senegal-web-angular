@@ -1,13 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { OnboardingComponent } from './pages/onboarding/onboarding.component';
-import { ProfileComponent } from './pages/profile/profile.component';
+import HomeComponent from './pages/home/home.component';
+import { SplashScreenComponent } from './pages/splash-screen/splash-screen.component';
 
 const routes: Routes = [
-   { path: '', component: HomeComponent },
-  { path: 'onboarding', component: OnboardingComponent },
-  { path: 'profile', component: ProfileComponent }
+  {
+    path: 'splash-screen',
+ component: SplashScreenComponent,
+  },
+ 
+   {
+    path: 'home',
+    component: HomeComponent,
+  },
+   
+
+ 
+
+  
+
+  //  Redirection par défaut → login
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+
 ];
 
 @NgModule({
